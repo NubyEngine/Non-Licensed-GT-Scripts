@@ -1,0 +1,44 @@
+SendPacket(2, "action|input\n|text|/warn Auto Clear Enabled!")
+Sleep(2000)
+SendPacket(2, "action|input\n|text|/warn Script by Nuby GT")
+SendPacket(2, "action|input\n|text|`2Purchase Auto Clear from https://discord.gg/v7SF9k6gXR")
+Sleep(2000)
+EditToggle("Auto Leave When Mods Join",true)
+end
+
+function breakrr(x , y)do
+pkt = {}
+pkt.px = x;
+pkt.py = y;
+pkt.x = GetLocal().posX
+pkt.y = GetLocal().posY
+pkt.type = 3;
+pkt.value = 18;
+pkt.state = 0;
+SendPacketRaw (false, pkt);
+Sleep(180)
+findingdirt()
+end
+end
+
+function findingdirt()
+do
+for _, tile in pairs(GetTiles())
+do
+if(tile.fg == 2) or (tile.fg == 10) or (tile.fg == 4)then
+if(FindPath(tile.x, tile.y-1) == false)then
+breakrr(tile.x, tile.y)
+break
+end
+else if (tile.bg == 14 and tile.fg == 0)then
+if(FindPath(tile.x, tile.y) == false)then
+breakrr(tile.x, tile.y) 
+break
+end
+end
+end
+end
+end
+end
+
+findingdirt()
